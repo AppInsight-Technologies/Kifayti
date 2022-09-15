@@ -64,7 +64,6 @@ Future<void> main() async {
       // // Android 9 (SDK 28), Xiaomi Redmi Note 7
       HttpOverrides.global = MyHttpOverrides();
     }
-    print("main running");
     runApp(VxState(store: GroceStore(), child: MyApp()));
 
 /*    await SentryFlutter.init(
