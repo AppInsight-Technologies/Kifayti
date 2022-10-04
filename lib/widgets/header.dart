@@ -2211,6 +2211,22 @@ class _HeaderState extends State<Header> with Navigations {
                       behavior: HitTestBehavior.translucent,
                       onTap: () async {
                         PrefUtils.prefs!.setString("formapscreen", "homescreen");
+                        // Navigation(context, name:Routename.MapScreen,navigatore: NavigatoreTyp.Push,
+                        //     qparms:{
+                        //       "valnext": "",
+                        //     });
+
+                        if(Vx.isWeb && !ResponsiveLayout.isSmallScreen(context)){
+                          NewMapWeb(context,valnext: "");
+                        }
+                        else {
+                          Navigation(
+                              context, name: Routename.NewMapScreen, navigatore: NavigatoreTyp.Push,
+                              qparms: {
+                                "valnext": "",
+                              });
+                        }
+                       /* PrefUtils.prefs!.setString("formapscreen", "homescreen");
                           if(Vx.isWeb && !ResponsiveLayout.isSmallScreen(context)){
                           MapWeb(context,valnext: "");
                           }
@@ -2220,7 +2236,7 @@ class _HeaderState extends State<Header> with Navigations {
                                 qparms: {
                                   "valnext": "",
                                 });
-                          }
+                          }*/
                       },
                       child: Image.asset(Images.pickup_point, height:25, width: 25, color: ColorCodes.badgecolor)/*Icon(Icons.location_on,
                           color: ColorCodes.darkgreen, size: 33),*/

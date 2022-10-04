@@ -61,7 +61,7 @@ class Features {
   static bool netWeight = true;
   static bool iscurrencyformatalign = false;
   static bool btobModule = false;
-  static bool sellerModule = false;
+  static bool sellerModule = true;
   static bool isfacebookappevent = true;
   static String logo = "";
 

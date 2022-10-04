@@ -10311,7 +10311,8 @@ if(_initialloading)
     return Column(
       children: [
         VxBuilder(mutations: {SetCartItem},builder: (context, store,state){
-          final snapshot = store.CartItemList;
+          final snapshot = (VxState.store as GroceStore).CartItemList;
+          //print("cart...."+snapshot.length.toString());
           switch(state){
 
             case VxStatus.none:
@@ -10709,7 +10710,7 @@ if(_initialloading)
                                             )
                                         )),
 
-                                    (Features.isMembership &&((snapshot.where((element) => element.mode! == "1").count() >= 1 ) && snapshot.length == 1))?
+                                    (Features.isMembership &&((snapshot.where((element) => element.mode! == "1").count() > 1 ) && snapshot.length == 1))?
                                     SizedBox.shrink():
                                       GestureDetector(
                                           onTap:(){

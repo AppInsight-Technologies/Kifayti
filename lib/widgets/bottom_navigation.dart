@@ -458,14 +458,14 @@ class _BottomNaviagationState  extends State<BottomNaviagation> with Navigations
                               padding: EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                 //color: ColorCodes.cyanColor,
-                                color: Features.ismultivendor?ColorCodes.greenColor:ColorCodes.varcolor,
+                                color: Features.ismultivendor?ColorCodes.greenColor:ColorCodes.lightBlueColor,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
                                   Image.asset(
-                                    Images.bag, height: 30, width: 30, color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,
+                                    Images.bag, height: 30, width: 30, color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,
                                   ),
                                   SizedBox(width: 5,),
                                   (_calculation.getTotal() == "0")? Text(_calculation.getItemCount(),  style: TextStyle(
@@ -479,7 +479,7 @@ class _BottomNaviagationState  extends State<BottomNaviagation> with Navigations
                                     children: [
                                       Text(_calculation.getItemCount(),  style: TextStyle(
                                         fontSize: 15,
-                                        color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,
+                                        color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,
                                         fontWeight: FontWeight.w700,
                                       ),
                                       ),
@@ -509,7 +509,7 @@ class _BottomNaviagationState  extends State<BottomNaviagation> with Navigations
                                           (double.parse(_calculation.getTotal())+double.parse(widget.adonamount)).toStringAsFixed(0):IConstants.currencyFormat +
                                           (double.parse(_calculation.getTotal())+double.parse(widget.adonamount)).toStringAsFixed(IConstants.decimaldigit),  style: TextStyle(
                                         fontSize: 15,
-                                        color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,
+                                        color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,
                                         fontWeight: FontWeight.bold,
                                       ),),
                                     ],
@@ -519,12 +519,12 @@ class _BottomNaviagationState  extends State<BottomNaviagation> with Navigations
                                   Text(widget.title!,
                                     style: TextStyle(
                                       fontSize: 17,
-                                      color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,
+                                      color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,
                                       //color: ColorCodes.discount,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Icon(Icons.keyboard_arrow_right_sharp, size: 35, color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,),
+                                  Icon(Icons.keyboard_arrow_right_sharp, size: 35, color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,),
                                 ],
                               ),
                             ),
@@ -724,14 +724,14 @@ class _BottomNaviagationState  extends State<BottomNaviagation> with Navigations
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(
                             //color: ColorCodes.cyanColor,
-                            color: Features.ismultivendor?ColorCodes.greenColor:ColorCodes.varcolor,
+                            color: Features.ismultivendor?ColorCodes.greenColor:ColorCodes.lightBlueColor,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Image.asset(
-                                Images.bag, height: 30, width: 30, color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,
+                                Images.bag, height: 30, width: 30, color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,
                               ),
                               SizedBox(width: 5,),
                               Column(
@@ -740,7 +740,7 @@ class _BottomNaviagationState  extends State<BottomNaviagation> with Navigations
                                 children: [
                                   Text(/*"1 Items"*/S.of(context).one_product,  style: TextStyle(
                                     fontSize: 15,
-                                    color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,
+                                    color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,
                                     fontWeight: FontWeight.w700,
                                   ),
                                   ),
@@ -756,7 +756,7 @@ class _BottomNaviagationState  extends State<BottomNaviagation> with Navigations
                                     IConstants.currencyFormat +
                                         (widget.title==S .current.confirm_order?_calculation.getTotal():/*_calculation.getTotal()*/widget.total!),  style: TextStyle(
                                     fontSize: 15,
-                                    color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,
+                                    color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,
                                     fontWeight: FontWeight.bold,
                                   ),),
                                 ],
@@ -765,12 +765,12 @@ class _BottomNaviagationState  extends State<BottomNaviagation> with Navigations
                               Text(widget.title!,
                                 style: TextStyle(
                                   fontSize: 17,
-                                  color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,
+                                  color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,
                                   //color: ColorCodes.discount,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Icon(Icons.keyboard_arrow_right_sharp, size: 35, color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.primaryColor:ColorCodes.liteColor,),
+                              Icon(Icons.keyboard_arrow_right_sharp, size: 35, color: IConstants.isEnterprise && Features.ismultivendor?ColorCodes.whiteColor:IConstants.isEnterprise? ColorCodes.whiteColor:ColorCodes.liteColor,),
                             ],
                           ),
                         ),
