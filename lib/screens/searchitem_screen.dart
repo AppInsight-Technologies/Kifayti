@@ -387,14 +387,14 @@ class _SearchitemScreenState extends State<SearchitemScreen> with Navigations{
                                                         child: VxBuilder(
                                                           mutations: {HomeScreenController},
                                                           builder: (ctx, store,VxStatus? state){
-                                                            final snapshot = store!.homescreen.data!.featuredByCart;
+                                                            final snapshot = homedata.data!.featuredByCart!.data!;
                                                             //stream: bloc.featureditems,
 
                                                             if (snapshot!=null) {
                                                               return Wrap(
                                                                 spacing:8.0,
                                                                 runSpacing: 8.0,
-                                                                children: snapshot.data!.map<Widget>((e) =>
+                                                                children: snapshot.map((e) =>
                                                                     GestureDetector(
                                                                       onTap: () {
                                                                         // Navigator.of(context).pushNamed(

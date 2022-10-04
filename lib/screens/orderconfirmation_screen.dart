@@ -442,7 +442,7 @@ class OrderconfirmationScreenState extends State<OrderconfirmationScreen> with N
                               borderRadius: BorderRadius.circular(5.0),
                               border: Border.all(
                                 width: 1.0,
-                                color: ColorCodes.greenColor,
+                                color: ColorCodes.primaryColor,
                               ),
                             ),
                             child: Text(
@@ -451,7 +451,7 @@ class OrderconfirmationScreenState extends State<OrderconfirmationScreen> with N
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16.0,
-                                  color: ColorCodes.greenColor),
+                                  color: ColorCodes.primaryColor),
                             ),
                           ),
                         ),

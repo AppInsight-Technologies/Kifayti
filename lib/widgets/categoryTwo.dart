@@ -148,9 +148,7 @@ class _CategoryTwoState extends State<CategoryTwo> with Navigations{
                     fontSize: ResponsiveLayout.isSmallScreen(context)?18.0:24.0,
                     fontWeight: FontWeight.w900,
                   color:  (Vx.isWeb && !ResponsiveLayout.isSmallScreen(context))?
-                  ColorCodes.blackColor:Theme
-                      .of(context)
-                      .primaryColor,),
+                  ColorCodes.blackColor:ColorCodes.blackColor,),
               ),
             ),
 

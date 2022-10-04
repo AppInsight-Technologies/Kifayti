@@ -144,7 +144,7 @@ class _ProductInfoWidgetState extends State<ProductInfoWidget> with Navigations{
     }
 
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: Vx.isWeb && !ResponsiveLayout.isSmallScreen(context)?0:0),
+      padding:  EdgeInsets.symmetric(horizontal: Vx.isWeb && !ResponsiveLayout.isSmallScreen(context)?0:5),
       child: Container(
         width: Vx.isWeb && !ResponsiveLayout.isSmallScreen(context)?
         MediaQuery.of(context).size.width / 1.5 : (MediaQuery.of(context).size.width) - 20,

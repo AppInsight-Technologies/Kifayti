@@ -1658,7 +1658,7 @@ class _PaymentScreenState extends State<PaymentScreen> with Navigations {
         }
       }
 
-      debugPrint("resBody . . . . .. ");
+      debugPrint("resBody . . . . .. "+url.toString());
       debugPrint(resBody.toString());
 
       final response = await http.post(
@@ -1670,7 +1670,9 @@ class _PaymentScreenState extends State<PaymentScreen> with Navigations {
       responsejson=responseJson['status'].toString();
       if (responseJson['status'].toString() == "true") {
         final orderencode = json.encode(responseJson['order']);
+        print("order encode data ...."+orderencode.toString());
         final orderdecode = json.decode(orderencode);
+        print("order encode data ...."+orderdecode.toString()+"////"+orderdecode['ref_id'].toString());
         if (PrefUtils.prefs!.getString('payment_type') == "paytm") {
           String orderAmount = orderdecode['orderAmount'].toString();
           PrefUtils.prefs!.setString("orderId", orderdecode['ref_id'].toString());
@@ -1721,7 +1723,7 @@ class _PaymentScreenState extends State<PaymentScreen> with Navigations {
            // Navigator.of(context).pushReplacementNamed(OrderconfirmationScreen.routeName, arguments: {'orderstatus': "success",'orderid':orderdecode['ref_id'].toString()});
             Navigation(context, name: Routename.OrderConfirmation, navigatore: NavigatoreTyp.Push,
                 parms: {'orderstatus' : "success",
-                  'orderid': orderdecode['ref_id'].toString()});
+                  'orderid':orderdecode['ref_id'].toString()});
           });
           final sellingitemData = Provider.of<SellingItemsList>(context, listen: false);
           for(int i = 0; i < sellingitemData.featuredVariation.length; i++) {

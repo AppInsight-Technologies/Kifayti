@@ -255,73 +255,73 @@ class _AddressDisplayState extends State<AddressDisplay> with Navigations{
 
           IConstants.deliverylocationmain.value = adressSelected;
           IConstants.currentdeliverylocation.value = S .of(widget.context!).location_available;
-            if (productBox.length > 0) {
-              debugPrint("nbvhfddbd....");//Suppose cart is not empty
-              _dialogforAvailability(
-                  PrefUtils.prefs!.getString("branch")!,
-                  responseJson['branch'].toString(),
-                  PrefUtils.prefs!.getString("deliverylocation")!,
-                  PrefUtils.prefs!.getString("latitude")!,
-                  PrefUtils.prefs!.getString("longitude")!);
+          if (productBox.length > 0) {
+            debugPrint("nbvhfddbd....");//Suppose cart is not empty
+            _dialogforAvailability(
+                PrefUtils.prefs!.getString("branch")!,
+                responseJson['branch'].toString(),
+                PrefUtils.prefs!.getString("deliverylocation")!,
+                PrefUtils.prefs!.getString("latitude")!,
+                PrefUtils.prefs!.getString("longitude")!);
+          } else {
+            debugPrint("nbvhfddbd....1...");
+            (VxState.store as GroceStore).userData.branch = PrefUtils.prefs!.getString('branch');
+            debugPrint("before set...1.."+ (VxState.store as GroceStore).userData.area!+"...."+adressSelected);
+            (VxState.store as GroceStore).userData.area = adressSelected;
+            debugPrint("after set...1.."+ (VxState.store as GroceStore).userData.area!);
+            (VxState.store as GroceStore).userData.delevrystatus = responseJson["status"].toString() == "yes"?true:false;
+
+            PrefUtils.prefs!.setString('branch', responseJson['branch'].toString());
+            PrefUtils.prefs!.setString('deliverylocation', adressSelected);
+            PrefUtils.prefs!.setString("latitude", (VxState.store as GroceStore).userData.billingAddress![0].lattitude.toString());
+            PrefUtils.prefs!.setString("longitude", (VxState.store as GroceStore).userData.billingAddress![0].logingitude.toString());
+            if (PrefUtils.prefs!.getString("skip") == "no") {
+              addprimarylocation("","","");
             } else {
-              debugPrint("nbvhfddbd....1...");
-              (VxState.store as GroceStore).userData.branch = PrefUtils.prefs!.getString('branch');
-              debugPrint("before set...1.."+ (VxState.store as GroceStore).userData.area!+"...."+adressSelected);
-              (VxState.store as GroceStore).userData.area = adressSelected;
-              debugPrint("after set...1.."+ (VxState.store as GroceStore).userData.area!);
-              (VxState.store as GroceStore).userData.delevrystatus = responseJson["status"].toString() == "yes"?true:false;
 
-              PrefUtils.prefs!.setString('branch', responseJson['branch'].toString());
-              PrefUtils.prefs!.setString('deliverylocation', adressSelected);
-              PrefUtils.prefs!.setString("latitude", (VxState.store as GroceStore).userData.billingAddress![0].lattitude.toString());
-              PrefUtils.prefs!.setString("longitude", (VxState.store as GroceStore).userData.billingAddress![0].logingitude.toString());
-              if (PrefUtils.prefs!.getString("skip") == "no") {
-                addprimarylocation("","","");
-              } else {
-
-                Navigator.of(context).pop();
-                if (PrefUtils.prefs!.getString("formapscreen") == "" ||
-                    PrefUtils.prefs!.getString("formapscreen") == "homescreen") {
-                  if (PrefUtils.prefs!.containsKey("fromcart")) {
-                    if (PrefUtils.prefs!.getString("fromcart") == "cart_screen") {
-                      PrefUtils.prefs!.remove("fromcart");
-                      debugPrint("cart....19");
-                      Navigation(context,name: Routename.MapScreen, navigatore: NavigatoreTyp.Push);
-                      debugPrint("cart....20");
-                      Navigation(context, name: Routename.Cart, navigatore: NavigatoreTyp.Push,qparms: {"afterlogin":null});
-                    } else {
-                      debugPrint("location 3 . . . . .");
-                      //Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
-                      Navigation(context, navigatore: NavigatoreTyp.homenav);
-                    }
+              Navigator.of(context).pop();
+              if (PrefUtils.prefs!.getString("formapscreen") == "" ||
+                  PrefUtils.prefs!.getString("formapscreen") == "homescreen") {
+                if (PrefUtils.prefs!.containsKey("fromcart")) {
+                  if (PrefUtils.prefs!.getString("fromcart") == "cart_screen") {
+                    PrefUtils.prefs!.remove("fromcart");
+                    debugPrint("cart....19");
+                    Navigation(context,name: Routename.MapScreen, navigatore: NavigatoreTyp.Push);
+                    debugPrint("cart....20");
+                    Navigation(context, name: Routename.Cart, navigatore: NavigatoreTyp.Push,qparms: {"afterlogin":null});
                   } else {
-                    debugPrint("location 4 . . . . .");
-                    HomeScreenController(user: (VxState.store as GroceStore).userData.id ??
-                        PrefUtils.prefs!.getString("tokenid"),
-                        branch: (VxState.store as GroceStore).userData.branch ?? "999",
-                        rows: "0");
+                    debugPrint("location 3 . . . . .");
+                    //Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
                     Navigation(context, navigatore: NavigatoreTyp.homenav);
                   }
-                } else if (PrefUtils.prefs!.getString("formapscreen") == "addressscreen") {
-                  Navigation(context, name: Routename.AddressScreen, navigatore: NavigatoreTyp.Push,
-                      qparms: {
-                        'addresstype': "new",
-                        'addressid': "",
-                      });
+                } else {
+                  debugPrint("location 4 . . . . .");
+                  HomeScreenController(user: (VxState.store as GroceStore).userData.id ??
+                      PrefUtils.prefs!.getString("tokenid"),
+                      branch: (VxState.store as GroceStore).userData.branch ?? "999",
+                      rows: "0");
+                  Navigation(context, navigatore: NavigatoreTyp.homenav);
                 }
+              } else if (PrefUtils.prefs!.getString("formapscreen") == "addressscreen") {
+                Navigation(context, name: Routename.AddressScreen, navigatore: NavigatoreTyp.Push,
+                    qparms: {
+                      'addresstype': "new",
+                      'addressid': "",
+                    });
               }
             }
+          }
 
         }
       } else {
         Navigator.of(context).pop();
         PrefUtils.prefs!.setString("isdelivering","false");
         IConstants.currentdeliverylocation.value = S .of(widget.context!).not_available_location;
-       // showInSnackBar();
+        // showInSnackBar();
       }
-     } catch (error) {
-       throw error;
-     }
+    } catch (error) {
+      throw error;
+    }
   }
 
 
@@ -394,16 +394,16 @@ class _AddressDisplayState extends State<AddressDisplay> with Navigations{
                                 child: Text(S .of(widget.context!).items,//"Items",
                                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),),),
 
-                              Expanded(
-                                flex: 4,
-                                child: Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 15.0,),
-                                    Text(S .of(widget.context!).reason,//"Reason",
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),),
-                                  ],
-                                ),
-                              ),
+                              // Expanded(
+                              //   flex: 4,
+                              //   child: Row(
+                              //     children: <Widget>[
+                              //       SizedBox(width: 15.0,),
+                              //       Text(S .of(widget.context!).reason,//"Reason",
+                              //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),),
+                              //     ],
+                              //   ),
+                              // ),
                             ],
                           ),
                           SizedBox(height: 5.0,),
@@ -487,14 +487,14 @@ class _AddressDisplayState extends State<AddressDisplay> with Navigations{
                                               ],
                                             ),
                                           ),
-                                          Expanded(
-                                              flex: 4,
-                                              child: Text(
-                                                  S
-                                                      .of(widget.context!)
-                                                      .not_available, //"Not available",
-                                                  style:
-                                                  TextStyle(fontSize: 12.0))),
+                                          // Expanded(
+                                          //     flex: 4,
+                                          //     child: Text(
+                                          //         S
+                                          //             .of(widget.context!)
+                                          //             .not_available, //"Not available",
+                                          //         style:
+                                          //         TextStyle(fontSize: 12.0))),
                                         ],
                                       ),
 
@@ -793,8 +793,8 @@ class _AddressDisplayState extends State<AddressDisplay> with Navigations{
   Future<void> cartCheck( String addressid,
       String addressType, String adressSelected, IconData adressIcon, username,) async {
     Auth _auth = Auth();
-   // AddressController addressController = AddressController();
-  //  await addressController.setdefult(addressId: addressid,branch:PrefUtils.prefs!.getString('branch'));
+    // AddressController addressController = AddressController();
+    //  await addressController.setdefult(addressId: addressid,branch:PrefUtils.prefs!.getString('branch'));
     AddressRepo _addressRepo = AddressRepo();
     _addressRepo.setDefultAddress(addressId:addressid ,branch:PrefUtils.prefs!.getString('branch') ).then((value) async {
       SetAddress(value!);
@@ -807,27 +807,36 @@ class _AddressDisplayState extends State<AddressDisplay> with Navigations{
               itemId + "," + productBox[i].itemId.toString();
         }
       }
-      debugPrint("rehsjx..."+addressid.toString()+"...."+itemId.toString());
-      var url = Api.cartCheck + addressid + "/" + itemId;
-      try {
-        final response = await http.get(
-          url,
-        );
-
-        final responseJson = json.decode(response.body);
-        debugPrint("rehsjx...1.."+responseJson.toString());
+      if(itemId == ""){
         checkLocation(adressSelected);
-      } catch (error) {
+      }else {
+        debugPrint(
+            "rehsjx..." + addressid.toString() + "...." + itemId.toString());
+        var url = Api.cartCheck + addressid + "/" + itemId;
+        try {
+          final response = await http.get(
+            url,
+          );
 
-        Navigator.of(context).pop();
-        Fluttertoast.showToast(
-            msg: S .of(widget.context!).something_went_wrong,//"Something went wrong!",
-            fontSize: MediaQuery.of(context).textScaleFactor *13,
-            backgroundColor: Colors.black87,
-            textColor: Colors.white);
-        throw error;
+          final responseJson = json.decode(response.body);
+          debugPrint("rehsjx...1.." + responseJson.toString());
+          checkLocation(adressSelected);
+        } catch (error) {
+          Navigator.of(context).pop();
+          Fluttertoast.showToast(
+              msg: S
+                  .of(widget.context!)
+                  .something_went_wrong, //"Something went wrong!",
+              fontSize: MediaQuery
+                  .of(context)
+                  .textScaleFactor * 13,
+              backgroundColor: Colors.black87,
+              textColor: Colors.white);
+          throw error;
+        }
       }
     });
+
 
   }
 
@@ -838,21 +847,21 @@ class _AddressDisplayState extends State<AddressDisplay> with Navigations{
     if (addressdata.billingAddress[widget.i].isdefault == '1') {
       return GestureDetector(
         onTap: () {
-          if(widget.fromscreen == "Mapscreen"){
-            _dialogforProcessing();
-            GroceStore store = VxState.store;
-            store.homescreen.data = null;
-            cartCheck(
+          //   if(widget.fromscreen == "Mapscreen"){
+          _dialogforProcessing();
+          GroceStore store = VxState.store;
+          store.homescreen.data = null;
+          cartCheck(
             //  PrefUtils.prefs!.getString("addressId")!,
-              addressdata!.billingAddress![widget.i].id.toString(),
-              addressdata!.billingAddress![widget.i].addressType!,
-              addressdata!.billingAddress![widget.i].address!,
-              addressdata!.billingAddress![widget.i].addressicon!,
-              addressdata!.billingAddress![widget.i].fullName,
-            );
-          }else {
-            Navigator.of(context).pop(true);
-          }
+            addressdata!.billingAddress![widget.i].id.toString(),
+            addressdata!.billingAddress![widget.i].addressType!,
+            addressdata!.billingAddress![widget.i].address!,
+            addressdata!.billingAddress![widget.i].addressicon!,
+            addressdata!.billingAddress![widget.i].fullName,
+          );
+          // }else {
+          //   Navigator.of(context).pop(true);
+          // }
         },
         child: Container(
           //height: 100,
@@ -879,7 +888,7 @@ class _AddressDisplayState extends State<AddressDisplay> with Navigations{
               //   width: 25,
               //   color: ColorCodes.blackColor,
               // ),
-             // Padding(padding: EdgeInsets.only(left: Vx.isWeb && !ResponsiveLayout.isSmallScreen(context)?10:5)),
+              // Padding(padding: EdgeInsets.only(left: Vx.isWeb && !ResponsiveLayout.isSmallScreen(context)?10:5)),
               Flexible(
                   fit: FlexFit.tight,
                   child: Column(
@@ -1112,23 +1121,23 @@ class _AddressDisplayState extends State<AddressDisplay> with Navigations{
     else {
       return GestureDetector(
         onTap: () async {
-          if(widget.fromscreen == "Mapscreen"){
-            _dialogforProcessing();
-            GroceStore store = VxState.store;
-            store.homescreen.data = null;
-            cartCheck(
-           //   PrefUtils.prefs!.getString("addressId")!,
-              addressdata!.billingAddress![widget.i].id.toString(),
-              addressdata!.billingAddress![widget.i].addressType!,
-              addressdata!.billingAddress![widget.i].address!,
-              addressdata!.billingAddress![widget.i].addressicon!,
-              addressdata!.billingAddress![widget.i].fullName,
+          //  if(widget.fromscreen == "Mapscreen"){
+          _dialogforProcessing();
+          GroceStore store = VxState.store;
+          store.homescreen.data = null;
+          cartCheck(
+            //   PrefUtils.prefs!.getString("addressId")!,
+            addressdata!.billingAddress![widget.i].id.toString(),
+            addressdata!.billingAddress![widget.i].addressType!,
+            addressdata!.billingAddress![widget.i].address!,
+            addressdata!.billingAddress![widget.i].addressicon!,
+            addressdata!.billingAddress![widget.i].fullName,
 
-            );
-          }else {
-            AddressController addressController = AddressController();
-            await addressController.setdefult(addressId: widget.billingAddressId,branch: PrefUtils.prefs!.getString('branch'));
-          }
+          );
+          // }else {
+          //   AddressController addressController = AddressController();
+          //   await addressController.setdefult(addressId: widget.billingAddressId,branch: PrefUtils.prefs!.getString('branch'));
+          // }
         },
         child: Container(
           // height: 100,

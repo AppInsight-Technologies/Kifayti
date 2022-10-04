@@ -1,4 +1,4 @@
-//app....
+// app....
 
 
 import 'package:flutter/material.dart';
@@ -40,7 +40,6 @@ import '../../utils/prefUtils.dart';
 
 import '../Address_display.dart';
 
-import '../addresswidget/address_info.dart';
 
 
 class NewMapComponent extends StatefulWidget {
@@ -466,7 +465,7 @@ class _NewMapComponentState extends State<NewMapComponent> with Navigations{
   _bodymobile(){
     return VxBuilder(
         mutations: {SetAddress,SetUserData},
-        builder: (ctx,  store,VxStatus? state){
+        builder: (ctx, store,VxStatus? state){
           addressdata = store!.userData;
           return (addressdata.billingAddress != null) ? Expanded(
               child: Column(
@@ -486,7 +485,7 @@ class _NewMapComponentState extends State<NewMapComponent> with Navigations{
                           ),
 
                         ),
-                      //  SizedBox(height: 10),
+                        //  SizedBox(height: 10),
                         Expanded(
                           child:
                           ListView.builder(
@@ -1944,7 +1943,8 @@ class _NewMapComponentState extends State<NewMapComponent> with Navigations{
 
 
 
-//web......
+
+// web......
 
 // import 'package:flutter/material.dart';
 //
@@ -2770,7 +2770,7 @@ class _NewMapComponentState extends State<NewMapComponent> with Navigations{
 //   Future<void> checkLocation() async {
 //     // imp feature in adding async is the it automatically wrap into Future.
 //     // var url = IConstants.API_PATH + 'check-location';
-//   //  var url = IConstants.isEnterprise && Features.ismultivendor?Api.checkLocationmultivendor:IConstants.API_PATH + 'check-location';
+//     //  var url = IConstants.isEnterprise && Features.ismultivendor?Api.checkLocationmultivendor:IConstants.API_PATH + 'check-location';
 //     try {
 //       /*final response = await http.post(url, body: {
 //         // await keyword is used to wait to this operation is complete.
@@ -3185,12 +3185,12 @@ class _NewMapComponentState extends State<NewMapComponent> with Navigations{
 //
 //                                     var com ="";
 //                                     String val = "";
-//                       String item = "";
+//                                     String item = "";
 //                                     for(int i = 0; i < productBox.length; i++){
 //                                       val = val+com+productBox[i].itemId.toString();
-//                      if(productBox[i].mode == "3"){
-//                          item = item + com + productBox[i].itemId.toString();
-//                                   }
+//                                       if(productBox[i].mode == "3"){
+//                                         item = item + com + productBox[i].itemId.toString();
+//                                       }
 //                                       com = ",";
 //                                     }
 //                                     Provider.of<CartItems>(context, listen: false).emptyCart().then((_) {
@@ -3203,12 +3203,12 @@ class _NewMapComponentState extends State<NewMapComponent> with Navigations{
 //                                   } else {
 //                                     var com ="";
 //                                     String val = "";
-//                                      String item = "";
+//                                     String item = "";
 //                                     for(int i = 0; i < productBox.length; i++){
 //                                       val = val+com+productBox[i].itemId.toString();
-//                                      if(productBox[i].mode == "3"){
+//                                       if(productBox[i].mode == "3"){
 //                                         item = item + com + productBox[i].itemId.toString();
-//                                        }
+//                                       }
 //                                       com = ",";
 //                                     }
 //                                     Provider.of<CartItems>(context, listen: false).emptyCart().then((_) {
@@ -3692,7 +3692,7 @@ class _NewMapComponentState extends State<NewMapComponent> with Navigations{
 //                         //   ),
 //                         // ),
 //
-//                       Expanded(
+//                         Expanded(
 //                           child:
 //                           ListView.builder(
 //                             itemCount: addressdata.billingAddress.length,
@@ -3749,7 +3749,7 @@ class _NewMapComponentState extends State<NewMapComponent> with Navigations{
 //                               ],
 //                             ),
 //                           ),
-//                       ),
+//                         ),
 //                       ],
 //                     )),
 //                   ]

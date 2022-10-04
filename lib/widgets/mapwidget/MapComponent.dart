@@ -1,4 +1,4 @@
-//app................
+// app................
 
 
 import 'dart:async';
@@ -41,7 +41,7 @@ class MapComponent extends StatefulWidget {
   String? moveNext = "";
   Map<String,String>? mapscreen;
   String? isdisplayprediction ="";
-   MapComponent(this.valnext,this.moveNext,this.mapscreen,this.isdisplayprediction);
+  MapComponent(this.valnext,this.moveNext,this.mapscreen,this.isdisplayprediction);
 
   @override
   State<MapComponent> createState() => _MapComponentState();
@@ -530,14 +530,17 @@ class _MapComponentState extends State<MapComponent> with Navigations{
                   padding:  EdgeInsets.only(top: 30),
                   child: IconButton(
                       icon: Icon(Icons.arrow_back, color:ColorCodes.blackColor),
-                      onPressed: () {
+                      onPressed: () async{
+                        Navigation(context, navigatore: NavigatoreTyp.homenav);
+                        return Future.value(false);
+                      } /*{
                         debugPrint("back.....");
                         //Navigator.of(context).pop();
-                        /*Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/home-screen', (Route<dynamic> route) => false);*/
+                        *//*Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/home-screen', (Route<dynamic> route) => false);*//*
                         Navigation(context, navigatore: NavigatoreTyp.homenav);
 
-                      }
+                      }*/
                   ),
                 ),
               ),
@@ -773,7 +776,7 @@ class _MapComponentState extends State<MapComponent> with Navigations{
   Future<void> checkLocation() async {
     // imp feature in adding async is the it automatically wrap into Future.
     var url = /*IConstants.isEnterprise &&*/ /*Features.ismultivendor?*/Api.checkLocationmultivendor/*:IConstants.API_PATH + 'check-location'*/;
-   debugPrint("sdfgb..."+url.toString());
+    debugPrint("sdfgb..."+url.toString());
     try {
       final response = await http.post(url, body: {
         // await keyword is used to wait to this operation is complete.
@@ -796,7 +799,7 @@ class _MapComponentState extends State<MapComponent> with Navigations{
       // });
       //SharedPreferences prefs = await SharedPreferences.getInstance();
 
-     // final responseJson = json.decode(response.body);
+      // final responseJson = json.decode(response.body);
 
       debugPrint("checkLocation........");
       debugPrint(_lat.toString());
@@ -1531,9 +1534,9 @@ class _MapComponentState extends State<MapComponent> with Navigations{
 
 
 // web......
-//
-//
-//
+
+
+
 // import 'dart:async';
 // import 'dart:convert';
 // // import 'FakeUi.dart' if (dart.library.html) 'RealUi.dart' as ui;

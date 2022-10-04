@@ -1,6 +1,6 @@
 
 
-//app...............................
+// app...............................
 
 
 import 'dart:io';
@@ -10,26 +10,40 @@ import 'dart:convert';
 import 'package:geocoder/geocoder.dart';
 import 'package:geocoding/geocoding.dart';
 import '../../constants/features.dart';
+import '../constants/features.dart';
 import '../../controller/mutations/address_mutation.dart';
 import '../../controller/mutations/home_screen_mutation.dart';
+import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import '../../controller/mutations/address_mutation.dart';
 import '../../models/VxModels/VxStore.dart';
 import '../../models/newmodle/cartModle.dart';
 import '../../models/newmodle/user.dart';
 import 'package:velocity_x/velocity_x.dart';
+
 import '../../providers/sellingitems.dart';
+
+
 import '../../constants/api.dart';
 import '../../generated/l10n.dart';
 import '../../rought_genrator.dart';
+import '../../screens/notavailable_product_screen.dart';
+
 import '../../assets/ColorCodes.dart';
+
 import '../../providers/cartItems.dart';
 import '../../constants/IConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
+import '../../screens/return_screen.dart';
+import '../../screens/addressbook_screen.dart';
+import '../../screens/confirmorder_screen.dart';
 import '../../screens/map_screen.dart';
 import '../../utils/ResponsiveLayout.dart';
 import '../../utils/prefUtils.dart';
+import '../../screens/cart_screen.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -43,6 +57,7 @@ import 'package:search_map_place/search_map_place.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:location/location.dart' as loc;
 import '../../assets/images.dart';
+import '../../screens/login_screen.dart';
 import '../../models/newmodle/address.dart'as newaddress;
 
 class AddressInfo extends StatefulWidget {
@@ -82,12 +97,12 @@ class AddressInfo extends StatefulWidget {
   String? custom="";
   String? customDays="";
   String? weight="";
-  String? alternativeDays = "";
-    AddressInfo(this.addresstype,this.addressid,this.delieveryLocation,this.latitude,
-  this.longitude,this.branch,this.houseNo,this.apartment,this.street,this.landmark,this.area,this.pincode,
-  this.orderid,this.title,this.itemid,this.itemname,this.itemimg,this.varname,this.varmrp,this.varprice,this.paymentMode,
-  this.cronTime,this.name,this.varid,this.brand,this.deliveriesarry,this.daily,this.dailyDays,this.weekday,this.weekend,
-  this.weekendDays,this.weekdayDays,this.custom,this.customDays,this.weight, this.alternativeDays);
+  String? alternativeDays="";
+  AddressInfo(this.addresstype,this.addressid,this.delieveryLocation,this.latitude,
+      this.longitude,this.branch,this.houseNo,this.apartment,this.street,this.landmark,this.area,this.pincode,
+      this.orderid,this.title,this.itemid,this.itemname,this.itemimg,this.varname,this.varmrp,this.varprice,this.paymentMode,
+      this.cronTime,this.name,this.varid,this.brand,this.deliveriesarry,this.daily,this.dailyDays,this.weekday,this.weekend,
+      this.weekendDays,this.weekdayDays,this.custom,this.customDays,this.weight,this.alternativeDays);
 
   @override
   _AddressInfoState createState() => _AddressInfoState();
@@ -1014,6 +1029,12 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
                 "weight": widget.weight
                 // "varid": routeArgs['varid'].toString(),
               });
+        }else if(PrefUtils.prefs!.getString("addressbook") == "AddressbookScreen"){
+          Navigation(context, name: Routename.AddressBook, navigatore: NavigatoreTyp.Push);
+        }else if(PrefUtils.prefs!.getString("addressbook") == "confirmorder"){
+          Navigation(context, name: Routename.ConfirmOrder,
+              navigatore: NavigatoreTyp.Push,
+              parms: {"prev": "cart_screen"});
         }else{
           //  Navigator.of(context).pop();// Navigator.of(context).popUntil(ModalRoute.withName(HomeScreen.routeName,));
           Navigation(context, name: Routename.Cart, navigatore: NavigatoreTyp.Push,qparms: {"afterlogin":null});
@@ -1842,6 +1863,12 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
                                   "weight": widget.weight
                                   //"varid": routeArgs['varid'].toString(),
                                 });
+                          }else if(PrefUtils.prefs!.getString("addressbook") == "AddressbookScreen"){
+                            Navigation(context, name: Routename.AddressBook, navigatore: NavigatoreTyp.Push);
+                          }else if(PrefUtils.prefs!.getString("addressbook") == "confirmorder"){
+                            Navigation(context, name: Routename.ConfirmOrder,
+                                navigatore: NavigatoreTyp.Push,
+                                parms: {"prev": "cart_screen"});
                           }else{
                             Navigation(context, name: Routename.Cart, navigatore: NavigatoreTyp.Push,qparms: {"afterlogin":null});// Navigator.of(context).popUntil(ModalRoute.withName(HomeScreen.routeName,));
                           }
@@ -2058,16 +2085,16 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
                                 child: Text(S .of(context).items,//"Items",
                                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),),),
 
-                              Expanded(
-                                flex: 4,
-                                child: Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 15.0,),
-                                    Text(S .of(context).reason,//"Reason",
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),),
-                                  ],
-                                ),
-                              ),
+                              // Expanded(
+                              //   flex: 4,
+                              //   child: Row(
+                              //     children: <Widget>[
+                              //       SizedBox(width: 15.0,),
+                              //       Text(S .of(context).reason,//"Reason",
+                              //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),),
+                              //     ],
+                              //   ),
+                              // ),
                             ],
                           ),
                           SizedBox(height: 5.0,),
@@ -2139,10 +2166,10 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
                                       ),
                                     ),
 
-                                    Expanded(
-                                        flex: 4,
-                                        child: Text(S .of(context).not_available,//"Not available",
-                                            style: TextStyle(fontSize: 12.0))),
+                                    // Expanded(
+                                    //     flex: 4,
+                                    //     child: Text(S .of(context).not_available,//"Not available",
+                                    //         style: TextStyle(fontSize: 12.0))),
                                   ],
                                 )
                             ),
@@ -2501,10 +2528,10 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
   }
 }
 
-//
+
 // webb--------------------------------------------------
-//
-//
+
+
 // import 'dart:async';
 // import 'dart:convert';
 // import 'dart:html' hide Point, Events;
@@ -2517,14 +2544,16 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 // import '../../models/newmodle/user.dart';
 // import 'package:velocity_x/velocity_x.dart';
 // import '../../constants/api.dart';
-// import '../../generated/l10n.dart';
-// import '../../rought_genrator.dart';
-// import '../../screens/address_screen.dart';
-// import '../../screens/subscribe_screen.dart';
-// import '../../utils/prefUtils.dart';
-// import '../../assets/images.dart';
-// import '../../providers/addressitems.dart';
-// import '../../screens/map_screen.dart';
+// import '../constants/features.dart';
+// import '../generated/l10n.dart';
+// import '../providers/cartItems.dart';
+// import '../rought_genrator.dart';
+// import '../screens/address_screen.dart';
+// import '../screens/subscribe_screen.dart';
+// import '../utils/prefUtils.dart';
+// import '../assets/images.dart';
+// import '../providers/addressitems.dart';
+// import '../screens/map_screen.dart';
 // import 'package:flutter/rendering.dart';
 // import 'package:flutter_google_places_web/flutter_google_places_web.dart';
 // import 'package:google_maps/google_maps.dart' hide Icon;
@@ -2536,18 +2565,18 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 // import 'package:flutter_spinkit/flutter_spinkit.dart';
 // import 'package:http/http.dart' as http;
 // import 'package:provider/provider.dart';
-// import '../../screens/return_screen.dart';
-// import '../../data/hiveDB.dart';
-// import '../../main.dart';
-// import '../../utils/ResponsiveLayout.dart';
-// import '../../screens/login_screen.dart';
-// import '../../constants/IConstants.dart';
-// import '../../screens/home_screen.dart';
-// import '../../screens/cart_screen.dart';
-// import '../../screens/addressbook_screen.dart';
-// import '../../screens/confirmorder_screen.dart';
-// import '../../handler/locationJs.dart';
-// import '../../models/newmodle/address.dart'as newaddress;
+// import '../screens/return_screen.dart';
+// import '../data/hiveDB.dart';
+// import '../main.dart';
+// import '../utils/ResponsiveLayout.dart';
+// import '../screens/login_screen.dart';
+// import '../constants/IConstants.dart';
+// import '../screens/home_screen.dart';
+// import '../screens/cart_screen.dart';
+// import '../screens/addressbook_screen.dart';
+// import '../screens/confirmorder_screen.dart';
+// import '../handler/locationJs.dart';
+// import '../models/newmodle/address.dart'as newaddress;
 //
 //
 //
@@ -2588,14 +2617,13 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //   String? custom="";
 //   String? customDays="";
 //   String? weight="";
-//   String? alternativeDays = "";
 //
 //
-//   AddressInfo(this.addresstype,this.addressid,this.delieveryLocation,this.latitude,
+//       AddressInfo(this.addresstype,this.addressid,this.delieveryLocation,this.latitude,
 //   this.longitude,this.branch,this.houseNo,this.apartment,this.street,this.landmark,this.area,this.pincode,
 //   this.orderid,this.title,this.itemid,this.itemname,this.itemimg,this.varname,this.varmrp,this.varprice,this.paymentMode,
 //   this.cronTime,this.name,this.varid,this.brand,this.deliveriesarry,this.daily,this.dailyDays,this.weekday,this.weekend,
-//   this.weekendDays,this.weekdayDays,this.custom,this.customDays,this.weight, this.alternativeDays);
+//   this.weekendDays,this.weekdayDays,this.custom,this.customDays,this.weight);
 //   @override
 //   _AddressInfoState createState() => _AddressInfoState();
 //
@@ -2660,7 +2688,8 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //
 //   UserData? userdata;
 //   List<CartItem> productBox=[];
-//
+//   String confirmSwap="";
+//   var addressdata;
 //   @override
 //   void initState() {
 //     // productBox = Hive.box<Product>(productBoxName);
@@ -2682,6 +2711,7 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //       });
 //     }
 //     userdata = (VxState.store as GroceStore).userData;
+//     addressdata = (VxState.store as GroceStore).userData;
 //     Future.delayed(Duration.zero, () async {
 //       //prefs  = await SharedPreferences.getInstance();
 //       PrefUtils.prefs!.setInt("htmlId", PrefUtils.prefs!.getInt("htmlId")! + 1);
@@ -3436,8 +3466,10 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //             _saveaddress(_addressLine);
 //
 //           } else {
+//             debugPrint("jhgfgh.....");
 //             // location();
 //             if (prefs.getString("formapscreen") == "addressscreen") {
+//               debugPrint("jhgfgh.....1..");
 //               final routeArgs = ModalRoute
 //                   .of(context)!
 //                   .settings
@@ -3493,6 +3525,7 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //                     });
 //               }
 //             } else {
+//               debugPrint("jhgfgh.....2..");
 //               if (productBox.length > 0) { //Suppose cart is not empty
 //                 _dialogforAvailability(
 //                     prefs.getString("branch")!,
@@ -3501,24 +3534,30 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //                     prefs.getString("latitude")!,
 //                     prefs.getString("longitude")!);
 //               } else {
+//                 debugPrint("jhgfgh.....3..");
 //                 prefs.setString('branch', responseJson['branch'].toString());
 //                 IConstants.deliverylocationmain.value = addressLine;
 //                 prefs.setString('deliverylocation', addressLine);
 //                 prefs.setString("latitude", _lat.toString());
 //                 prefs.setString("longitude", _lng.toString());
 //                 if (prefs.getString("skip") == "no") {
-//                   addprimarylocation();
+//                   debugPrint("jhgfgh.....4..");
+//                   addprimarylocation("","","");
 //                 } else {
+//                   debugPrint("jhgfgh.....5..");
 //                   Navigator.of(context).pop();
 //                   if (prefs.getString("formapscreen") == "" ||
 //                       prefs.getString("formapscreen") == "homescreen") {
+//                     debugPrint("jhgfgh.....6..");
 //                     if (prefs.containsKey("fromcart")) {
 //                       if (prefs.getString("fromcart") == "cart_screen") {
+//                         debugPrint("jhgfgh.....7..");
 //                         prefs.remove("fromcart");
 //                         /* Navigator.of(context).pushNamedAndRemoveUntil(
 //                             MapScreen.routeName,
 //                             ModalRoute.withName(CartScreen.routeName));*/
-//                         if(Vx.isWeb && !ResponsiveLayout.isSmallScreen(context)){
+//                         if (Vx.isWeb &&
+//                             !ResponsiveLayout.isSmallScreen(context)) {
 //                           // _dialogforaddress(context);
 //                           MapWeb(context);
 //                         }
@@ -3526,38 +3565,54 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //                           Navigation(context, name: Routename.MapScreen,
 //                               navigatore: NavigatoreTyp.Push);
 //                         }
-//                         Navigation(context, name: Routename.Cart, navigatore: NavigatoreTyp.Push,qparms: {"afterlogin":null});
+//                         Navigation(context, name: Routename.Cart,
+//                             navigatore: NavigatoreTyp.Push,
+//                             qparms: {"afterlogin": null});
 //                       } else {
+//                         debugPrint("jhgfgh.....8..");
 //                         /*Navigator.pushNamedAndRemoveUntil(
 //                             context, HomeScreen.routeName, (route) => false);*/
-//                         Navigation(context, /*name:Routename.Home,*/navigatore: NavigatoreTyp.homenav);
+//                         Navigation(context, /*name:Routename.Home,*/
+//                             navigatore: NavigatoreTyp.homenav);
 //                       }
 //                     } else {
+//                       debugPrint("jhgfgh.....9..");
 //                       /*Navigator.pushNamedAndRemoveUntil(
 //                           context, HomeScreen.routeName, (route) => false);*/
-//                       Navigation(context, /*name:Routename.Home,*/navigatore: NavigatoreTyp.homenav);
+//                       // Navigation(context, /*name:Routename.Home,*/
+//                       //     navigatore: NavigatoreTyp.homenav);
+//                       prefs.setString('deliverylocation', _addressLine);
+//                       prefs.setString("latitude", _lat.toString());
+//                       prefs.setString("longitude", _lng.toString());
+//                       IConstants.deliverylocationmain.value = addressLine;
+//                       IConstants.currentdeliverylocation.value = S .of(context).location_available;
+//                       _saveaddress(_addressLine);
 //                     }
-//                   } else
-//                   if (prefs.getString("formapscreen") == "addressscreen") {
-//                     /* Navigator.of(context)
+//                   } else {
+//                     debugPrint("jhgfgh.....10..");
+//                     if (prefs.getString("formapscreen") == "addressscreen") {
+//                       debugPrint("jhgfgh.....11..");
+//                       /* Navigator.of(context)
 //                         .pushReplacementNamed(
 //                         AddressScreen.routeName, arguments: {
 //                       'addresstype': "new",
 //                       'addressid': "",
 //                     });*/
-//                     if (Vx.isWeb && !ResponsiveLayout.isSmallScreen(context)) {
-//                       // _dialogforaddress(context);
-//                       AddressWeb(context,
-//                         addresstype: "new",
-//                         addressid: "",);
-//                     }
-//                     else {
-//                       Navigation(context, name: Routename.AddressScreen,
-//                           navigatore: NavigatoreTyp.Push,
-//                           qparms: {
-//                             'addresstype': "new",
-//                             'addressid': "",
-//                           });
+//                       if (Vx.isWeb &&
+//                           !ResponsiveLayout.isSmallScreen(context)) {
+//                         // _dialogforaddress(context);
+//                         AddressWeb(context,
+//                           addresstype: "new",
+//                           addressid: "",);
+//                       }
+//                       else {
+//                         Navigation(context, name: Routename.AddressScreen,
+//                             navigatore: NavigatoreTyp.Push,
+//                             qparms: {
+//                               'addresstype': "new",
+//                               'addressid': "",
+//                             });
+//                       }
 //                     }
 //                   }
 //                 }
@@ -3655,16 +3710,16 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //                                 style: TextStyle(
 //                                     fontWeight: FontWeight.bold,
 //                                     fontSize: 12.0),),
-//
-//                               Row(
-//                                 children: <Widget>[
-//                                   SizedBox(width: 15.0,),
-//                                   Text(S .of(context).reason,//"Reason",
-//                                     style: TextStyle(
-//                                         fontWeight: FontWeight.bold,
-//                                         fontSize: 12.0),),
-//                                 ],
-//                               ),
+//                               //
+//                               // Row(
+//                               //   children: <Widget>[
+//                               //     SizedBox(width: 15.0,),
+//                               //     Text(S .of(context).reason,//"Reason",
+//                               //       style: TextStyle(
+//                               //           fontWeight: FontWeight.bold,
+//                               //           fontSize: 12.0),),
+//                               //   ],
+//                               // ),
 //                             ],
 //                           ),
 //                           SizedBox(height: 5.0,),
@@ -3760,9 +3815,9 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //                                           ],
 //                                         ),
 //
-//                                         Text(S .of(context).not_available,//"Not available",
-//                                             style: TextStyle(
-//                                                 fontSize: 12.0)),
+//                                         // Text(S .of(context).not_available,//"Not available",
+//                                         //     style: TextStyle(
+//                                         //         fontSize: 12.0)),
 //                                       ],
 //                                     )
 //                             ),
@@ -3795,42 +3850,30 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //                               GestureDetector(
 //                                 onTap: () {
 //                                   Navigator.of(context).pop();
-//                                   if (prefs.getString("formapscreen") == "" ||
-//                                       prefs.getString("formapscreen") ==
-//                                           "homescreen") {
-//                                     if (prefs.containsKey("fromcart")) {
-//                                       if (prefs.getString("fromcart") ==
-//                                           "cart_screen") {
-//                                         prefs.remove("fromcart");
-//                                         Navigator.of(context)
-//                                             .pushNamedAndRemoveUntil(
-//                                             MapScreen.routeName,
-//                                             ModalRoute.withName(
-//                                                 CartScreen.routeName));
-//
-//                                         Navigator.of(context)
-//                                             .pushReplacementNamed(
-//                                           CartScreen.routeName,
-//                                         );
+//                                   if (PrefUtils.prefs!.getString("formapscreen") == "" ||
+//                                       PrefUtils.prefs!.getString("formapscreen") == "homescreen") {
+//                                     if (PrefUtils.prefs!.containsKey("fromcart")) {
+//                                       if (PrefUtils.prefs!.getString("fromcart") == "cart_screen") {
+//                                         PrefUtils.prefs!.remove("fromcart");
+//                                         debugPrint("cart....21");
+//                                         Navigation(context,name: Routename.MapScreen, navigatore: NavigatoreTyp.Push);
+//                                         debugPrint("cart....22");
+//                                         Navigation(context, name: Routename.Cart, navigatore: NavigatoreTyp.Push,qparms: {"afterlogin":null});
 //                                       } else {
-//                                         /*  Navigator.pushNamedAndRemoveUntil(
-//                                             context, HomeScreen.routeName, (
-//                                             route) => false);*/
-//                                         Navigation(context, /*name:Routename.Home,*/navigatore: NavigatoreTyp.homenav);
+//                                         debugPrint("location 5 . . . . .");
+//                                         Navigation(context, navigatore: NavigatoreTyp.homenav);
 //                                       }
 //                                     } else {
-//                                       /*  Navigator.pushNamedAndRemoveUntil(
-//                                           context, HomeScreen.routeName, (
-//                                           route) => false);*/
-//                                       Navigation(context, /*name:Routename.Home,*/navigatore: NavigatoreTyp.homenav);
+//                                       debugPrint("location 6 . . . . .");
+//                                       Navigation(context, navigatore: NavigatoreTyp.homenav);
 //                                     }
-//                                   } else if (prefs.getString("formapscreen") ==
-//                                       "addressscreen") {
-//                                     Navigator.of(context).pushReplacementNamed(
-//                                         AddressScreen.routeName, arguments: {
-//                                       'addresstype': "new",
-//                                       'addressid': "",
-//                                     });
+//                                   } else if (PrefUtils.prefs!.getString("formapscreen") == "addressscreen") {
+//
+//                                     Navigation(context, name: Routename.AddressScreen, navigatore: NavigatoreTyp.Push,
+//                                         qparms: {
+//                                           'addresstype': "new",
+//                                           'addressid': "",
+//                                         });
 //                                   }
 //                                 },
 //                                 child: new Container(
@@ -3852,71 +3895,97 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //                               SizedBox(width: 20.0,),
 //                               GestureDetector(
 //                                 onTap: () async {
-//                                   prefs.setString('branch', currentBranch);
-//                                   prefs.setString(
-//                                       'deliverylocation', addressLine);
-//                                   prefs.setString("latitude", _lat.toString());
-//                                   prefs.setString("longitude", _lng.toString());
-//                                   if (prefs.getString("skip") == "no") {
-//                                     //Hive.box<Product>(productBoxName).deleteFromDisk();
-//                                     Hive.box<Product>(productBoxName).clear();
-//                                     try {
-//                                       // *//*if (Platform.isIOS || Platform.isAndroid) {
-//                                       //   //Hive.openBox<Product>(productBoxName);
-//                                       // }*//*
-//                                     } catch (e) {
-//                                       Hive.registerAdapter(ProductAdapter());
-//                                       //Hive.openBox<Product>(productBoxName);
-//                                     }
-//                                     addprimarylocation();
-//                                   } else {
-//                                     //Hive.box<Product>(productBoxName).deleteFromDisk();
-//                                     Hive.box<Product>(productBoxName).clear();
-//                                     try {
+//                                   (VxState.store as GroceStore).userData.branch = PrefUtils.prefs!.getString('branch');
+//                                   (VxState.store as GroceStore).userData.area = addressdata.billingAddress[0].address.toString();
 //
-//                                     } catch (e) {
-//                                       //await Hive.openBox<Product>(productBoxName);
-//                                     }
-//                                     Navigator.of(context).pop();
-//                                     if (prefs.getString("formapscreen") == "" ||
-//                                         prefs.getString("formapscreen") ==
-//                                             "homescreen") {
-//                                       if (prefs.containsKey("fromcart")) {
-//                                         if (prefs.getString("fromcart") ==
-//                                             "cart_screen") {
-//                                           prefs.remove("fromcart");
-//                                           Navigator.of(context)
-//                                               .pushNamedAndRemoveUntil(
-//                                               MapScreen.routeName,
-//                                               ModalRoute.withName(
-//                                                   CartScreen.routeName));
 //
-//                                           Navigator.of(context)
-//                                               .pushReplacementNamed(
-//                                             CartScreen.routeName,
-//                                           );
-//                                         } else {
-//                                           /* Navigator.pushNamedAndRemoveUntil(
-//                                               context, HomeScreen.routeName, (
-//                                               route) => false);*/
-//                                           Navigation(context, /*name:Routename.Home,*/navigatore: NavigatoreTyp.homenav);
-//                                         }
-//                                       } else {
-//                                         /*Navigator.pushNamedAndRemoveUntil(
-//                                             context, HomeScreen.routeName, (
-//                                             route) => false);*/
-//                                         Navigation(context, /*name:Routename.Home,*/navigatore: NavigatoreTyp.homenav);
+//                                   PrefUtils.prefs!.setString('branch', currentBranch);
+//                                   PrefUtils.prefs!.setString('deliverylocation', addressdata.billingAddress[0].address.toString());
+//                                   PrefUtils.prefs!.setString("latitude", addressdata.billingAddress[0].lattitude.toString());
+//                                   PrefUtils.prefs!.setString("longitude", addressdata.billingAddress[0].logingitude.toString());
+//
+//                                   if (PrefUtils.prefs!.getString("skip") == "no") {
+//                                     var com ="";
+//                                     String val = "";
+//                                     String item ="";
+//                                     for(int i = 0; i < productBox.length; i++){
+//                                       val = val+com+productBox[i].itemId.toString();
+//                                       if(productBox[i].mode == "3"){
+//                                         item = item +com+productBox[i].itemId.toString();
 //                                       }
-//                                     } else
-//                                     if (prefs.getString("formapscreen") ==
-//                                         "addressscreen") {
-//                                       Navigator.of(context)
-//                                           .pushReplacementNamed(
-//                                           AddressScreen.routeName, arguments: {
-//                                         'addresstype': "new",
-//                                         'addressid': "",
-//                                       });
+//                                       debugPrint("var id.. ${productBox[i].itemId.toString()}");
+//                                       com = ",";
 //                                     }
+//                                     debugPrint("val...v1 $val");
+//                                     Provider.of<CartItems>(context, listen: false).emptyCart().then((_) {
+//
+//                                       setState(() {
+//                                         confirmSwap = "confirmSwap";
+//                                         debugPrint("confirmSwap..ss"+confirmSwap);
+//                                       });
+//                                       addprimarylocation(currentBranch,item,val);
+//                                     });
+//
+//                                   } else {
+//                                     var com ="";
+//                                     String val = "";
+//                                     String item = "";
+//                                     for(int i = 0; i < productBox.length; i++){
+//                                       val = val+com+productBox[i].itemId.toString();
+//                                       if(productBox[i].mode == "3"){
+//                                         item = item +com+productBox[i].itemId.toString();
+//                                       }
+//                                       debugPrint("var id.. ${productBox[i].varId.toString()}");
+//                                       com = ",";
+//                                     }
+//                                     debugPrint("val...v2 $val");
+//                                     Provider.of<CartItems>(context, listen: false).emptyCart().then((_) {
+//                                       Navigator.of(context).pop();
+//                                       if (PrefUtils.prefs!.getString("formapscreen") == "" ||
+//                                           PrefUtils.prefs!.getString("formapscreen") == "homescreen") {
+//                                         debugPrint("hju....1");
+//                                         if (PrefUtils.prefs!.containsKey("fromcart")) {
+//                                           if (PrefUtils.prefs!.getString("fromcart") == "cart_screen") {
+//                                             PrefUtils.prefs!.remove("fromcart");
+//                                             debugPrint("cart....23");
+//
+//                                             Navigation(context,name: Routename.MapScreen, navigatore: NavigatoreTyp.Push);
+//                                             debugPrint("cart....23");
+//                                             Navigation(context, name: Routename.Cart, navigatore: NavigatoreTyp.Push,qparms: {"afterlogin":null});
+//                                           } else {
+//                                             debugPrint("location 7 . . . . .");
+//                                             //Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+//                                             Navigation(context, navigatore: NavigatoreTyp.homenav);
+//                                           }
+//                                         } else {
+//                                           debugPrint("location 8 . . . . .");
+//
+//                                           Navigation(context, name:Routename.NotAvailability,navigatore: NavigatoreTyp.Push,
+//                                               qparms: {
+//                                                 "val" : val,
+//                                                 "currentbranch": currentBranch,
+//                                                 "item":item
+//
+//                                               });
+//                                         }
+//                                       } else if(confirmSwap == "confirmSwap" ){
+//                                         debugPrint("location 30 . . . . .");
+//                                         debugPrint("confirm swap....entered..30");
+//
+//                                         Navigation(context, name:Routename.NotAvailability,navigatore: NavigatoreTyp.Push,
+//                                             parms: {
+//                                               "val" : val,
+//                                               "currentbranch": currentBranch,
+//                                               "item":item
+//                                             });
+//                                       }else if (PrefUtils.prefs!.getString("formapscreen") == "addressscreen") {
+//                                         Navigation(context, name: Routename.AddressScreen, navigatore: NavigatoreTyp.Push,
+//                                             qparms: {
+//                                               'addresstype': "new",
+//                                               'addressid': "",
+//                                             });
+//                                       }
+//                                     });
 //                                   }
 //                                 },
 //                                 child: new Container(
@@ -3951,7 +4020,7 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //   }
 //
 //
-//   Future<void> addprimarylocation() async {
+//   Future<void> addprimarylocation(String currentBranch, String item, String val) async {
 //     try {
 //       SharedPreferences prefs = await SharedPreferences.getInstance();
 //       final response = await http.post(Api.addPrimaryLocation, body: {
@@ -3961,10 +4030,15 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //         "longitude": _lng.toString(),
 //         "area": _address,
 //         "branch": prefs.getString('branch'),
+//         "ref": IConstants.isEnterprise && Features.ismultivendor ? IConstants.refIdForMultiVendor : "",
+//         "branchtype": IConstants.isEnterprise && Features.ismultivendor ? IConstants.branchtype.toString() : "",
 //       });
 //       final responseJson = json.decode(response.body);
 //
 //       if (responseJson["data"].toString() == "true") {
+//         (VxState.store as GroceStore).userData.branch = PrefUtils.prefs!.getString('branch');
+//         (VxState.store as GroceStore).userData.area = _address.toString();
+//         (VxState.store as GroceStore).userData.delevrystatus = responseJson["data"].toString() == "true"?true:false;
 //         Navigator.of(context).pop();
 //         if (prefs.getString("formapscreen") == "" ||
 //             prefs.getString("formapscreen") == "homescreen") {
@@ -3984,9 +4058,24 @@ class _AddressInfoState extends State<AddressInfo> with Navigations{
 //           } else {
 //             /*Navigator.pushNamedAndRemoveUntil(
 //                 context, HomeScreen.routeName, (route) => false);*/
+//             Navigation(context, /*name:Routename.Home,*/navigatore: NavigatoreTyp.homenav);
 //           }
-//           Navigation(context, /*name:Routename.Home,*/navigatore: NavigatoreTyp.homenav);
-//         } else if (prefs.getString("formapscreen") == "addressscreen") {
+//
+//         } else if(confirmSwap == "confirmSwap" ){
+//           debugPrint("location 13 . . . . .");
+//           debugPrint("confirm swap....entered");
+//           /* Navigator.of(context)
+//                 .pushReplacementNamed(NotavailabilityProduct.routeName, arguments: {
+//               "currentBranch": currentBranch,
+//               "val": val
+//             });*/
+//           Navigation(context, name:Routename.NotAvailability,navigatore: NavigatoreTyp.Push,
+//               parms: {
+//                 "val" : val,
+//                 "currentbranch": currentBranch,
+//                 "item":item
+//               });
+//         }else if (prefs.getString("formapscreen") == "addressscreen") {
 //           Navigator.of(context)
 //               .pushReplacementNamed(AddressScreen.routeName, arguments: {
 //             'addresstype': "new",

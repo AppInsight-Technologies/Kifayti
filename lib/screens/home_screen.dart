@@ -2067,7 +2067,7 @@ class _HomeScreenState extends State<HomeScreen> with Navigations{
                                             fontSize: ResponsiveLayout.isSmallScreen(context)?18.0:24.0,
                                             fontWeight: FontWeight.w900,
                                           color:  (Vx.isWeb && !ResponsiveLayout.isSmallScreen(context))?
-                                          ColorCodes.blackColor:ColorCodes.primaryColor,),
+                                          ColorCodes.blackColor:ColorCodes.blackColor,),
                                       ) : SizedBox.shrink(),
                                     ),
                                     Container(

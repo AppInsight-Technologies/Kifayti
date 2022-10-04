@@ -36,7 +36,7 @@ class ColorCodes {
   static Color lightblue = Color(0xff38559E);
   static Color darkblue = Color(0xff012961);
   static Color mediumBlueColor = Color(0xff2966A2);
-  static Color lightBlueColor = IConstants.isEnterprise?Color(0xffCAE5FC):Color(0xffCAE5FC); //bottomnavigation color change
+  static Color lightBlueColor = IConstants.isEnterprise?Color(0xff32B847):Color(0xff32B847); //bottomnavigation color change
   static Color lightskybluecolor = Color(0xFFC2E7F9);
 
   static Color lightColor = Color(0xffebf4ff);
