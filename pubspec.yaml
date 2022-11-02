@@ -40,15 +40,15 @@ dependencies:
     country_code_picker:
     #pin_code_text_field: ^1.5.1
     #gradient_widgets: ^0.5.2
-#    gradient_app_bar:
+    #    gradient_app_bar:
     new_gradient_app_bar:
     sentry_flutter:
     google_maps_flutter:
     flutter_google_maps:
-#    geolocator:
+    #    geolocator:
     geocoding: ^2.0.1
     firebase_crashlytics: ^2.5.1
-#    flutter_inappwebview: ^5.3.2
+    #    flutter_inappwebview: ^5.3.2
     flutter_spinkit:
     share:
     launch_review:
@@ -101,15 +101,14 @@ dependencies:
     #ffi: ^1.0.0
     ffi:
     eventify:
-#    cashfree_pg: ^2.0.10+30
-#    cashfree_pg: 2.0.12+32
+    cashfree_pg: ^2.0.10+30
     flutter_facebook_login_web:
     bloc: #^7.0.0
     flutter_login_facebook: ^1.2.0
     firebase_analytics:
     firebase_dynamic_links:
     collection:
-#    paytm_allinonesdk:  #1.0.3 for solving conflict between Image_picker0.6.7+22 and paytm all in one sdk
+    #    paytm_allinonesdk:  #1.0.3 for solving conflict between Image_picker0.6.7+22 and paytm all in one sdk
     syncfusion_flutter_datepicker:
     permission_handler: 8.2.0
     custom_radio_grouped_button:
@@ -217,4 +216,4 @@ flutter:
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages
 flutter_intl:
-  enabled: true
+    enabled: true
