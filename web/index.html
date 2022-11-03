@@ -33,9 +33,9 @@
     <link rel="stylesheet" href="cashfree/modle.css">
     <link rel="stylesheet" href="loading/loading.css">
     <link rel="import" href="loading/loading.html">
-    <title>Kifayti </title>
+    <title>Kifayti</title>
     <link rel="manifest" href="manifest.json">
-    <script src="script.js" defer></script>
+  <!--  <script src="script.js" defer></script>-->
 </head>
 <style>
   body{
@@ -43,20 +43,16 @@
  }
 </style>
 <body>
-<!--<picture id="splash">-->
-<!--    <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x" media="(prefers-color-scheme: light) or (prefers-color-scheme: no-preference)">-->
-<!--    <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x" media="(prefers-color-scheme: dark)">-->
-<!--    <img class="center" src="splash/img/light-1x.png" />-->
-<!--</picture>-->
     <!-- This script installs service_worker.js to provide PWA functionality to
      application. For more information, see:
      https://developers.google.com/web/fundamentals/primers/service-workers -->
     <script src="main/main.js" onload="getTitle"></script>
+    <script src="script.js" async defer></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
     <script>
         window.fbAsyncInit = function() {
             FB.init({
-                appId: "1100365537123865",
+                appId: "485756096524156",
                 autoLogAppEvents: true,
                 xfbml: true,
                 version: "v7.0"
@@ -70,16 +66,16 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSR3pigsWMH7goi_CthGQFckfb5QPOH8E"></script>
+
     <script>
         var firebaseConfig = {
-  apiKey: "AIzaSyB4-PdoZZuV9eKimJ-kPGeAxSjDgNodmwY",
-  authDomain: "kifayti-9fc7f.firebaseapp.com",
-  projectId: "kifayti-9fc7f",
-  storageBucket: "kifayti-9fc7f.appspot.com",
-  messagingSenderId: "614077065115",
-  appId: "1:614077065115:web:389bfb4bfa515eb540633e",
-  measurementId: "G-YTCFMV3PY4"
-};
+  apiKey: "AIzaSyAJMRySvn81hq5OUJzAYXe9zjepUGcGfvc",
+  authDomain: "mantraorganicshop.firebaseapp.com",
+  projectId: "mantraorganicshop",
+  storageBucket: "mantraorganicshop.appspot.com",
+  messagingSenderId: "970491780015",
+  appId: "1:970491780015:web:28acc63c7fe69f93eb2d5a",
+  measurementId: "G-7X5H1L8EPD"
 };
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
@@ -89,7 +85,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://sdk.cashfree.com/js/ui/1.0.26/dropinClient.prod.js"></script>
      <script src="cashfree/cashfree.js"></script>
-     <script src="main/main.js" onload="getTitle"></script>
     <div id="myModal" class="modal">
 
         <!-- Modal content -->
@@ -275,8 +270,10 @@
     </div>-->
 
 
+
+
 <!--    <script>-->
-<!--        var serviceWorkerVersion = '1839222451';-->
+<!--        var serviceWorkerVersion = null;-->
 <!--        var scriptLoaded = false;-->
 
 <!--        function loadMainDartJs() {-->
@@ -342,9 +339,8 @@
 <!--        }-->
 <!--    </script>-->
 
-<script src="main.dart.js" type="application/javascript"></script>
-<script src="main.dart.js?version=28" type="application/javascript"></script>
-
+    <script src="main.dart.js" type="application/javascript"></script>
+    <script src="main.dart.js?version=37" type="application/javascript"></script>
 </body>
 
 </html>
