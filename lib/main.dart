@@ -44,15 +44,15 @@ final navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: "AIzaSyAJx-iJOWGqWXORfChQW6LG_21eEv21efQ",
-          authDomain: "grocbay-c0de4.firebaseapp.com",
-          databaseURL: "https://grocbay-c0de4.firebaseio.com",
-          projectId: "grocbay-c0de4",
-          storageBucket: "grocbay-c0de4.appspot.com",
-          messagingSenderId: "277236241016",
-          appId: "1:277236241016:web:f05bdca0baba44fb63538d",
-          measurementId: "G-0QT9WW56E6")
+      // options: const FirebaseOptions(
+      //     apiKey: "AIzaSyAJx-iJOWGqWXORfChQW6LG_21eEv21efQ",
+      //     authDomain: "grocbay-c0de4.firebaseapp.com",
+      //     databaseURL: "https://grocbay-c0de4.firebaseio.com",
+      //     projectId: "grocbay-c0de4",
+      //     storageBucket: "grocbay-c0de4.appspot.com",
+      //     messagingSenderId: "277236241016",
+      //     appId: "1:277236241016:web:f05bdca0baba44fb63538d",
+      //     measurementId: "G-0QT9WW56E6")
   );
   const Color black = Color(0xff2b6838);
   // Vx.setPathUrlStrategy();

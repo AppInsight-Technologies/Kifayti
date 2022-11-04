@@ -850,8 +850,9 @@ class _ItemsScreenState extends State<ItemsScreen> with TickerProviderStateMixin
                                                child: GestureDetector(
                                                  onTap: () {
                                                    _displayitem(
-                                                       nestedCategory[i].id!, i,
-                                                       nestedCategory[i].type!,
+                                                       nestedCategory[i].id!,
+                                                       i,
+                                                       1,
                                                        "0");
                                                    Future.delayed(const Duration(seconds: 1), () async {
                                                      _scrollController.jumpTo(index: int.parse(i.toString()));
