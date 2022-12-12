@@ -7,9 +7,128 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:614077065115:android:1e6a66ca8811ca9440633e",
+        "android_client_info": {
+          "package_name": "com.kifayti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614077065115-sk85ijfpci7jd22escv0pjkqerk2r3ln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnlJ6PHCvKMauIdQ4TWUWu_zACrYhY6ig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614077065115-sk85ijfpci7jd22escv0pjkqerk2r3ln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:614077065115:android:e47c0e5b67304d8140633e",
         "android_client_info": {
           "package_name": "com.kifayti.store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614077065115-43t69l90jv23h0c1p2fb6ket6vdk81dq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kifayti.store",
+            "certificate_hash": "88a83abce9503f89ddcaa2a2040211aded88425e"
+          }
+        },
+        {
+          "client_id": "614077065115-d3v89etd9bmc23jp4o3v1nuvc0bv6fcj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kifayti.store",
+            "certificate_hash": "041c2cfe61a792ec7423205c78b91f50d6dd4db8"
+          }
+        },
+        {
+          "client_id": "614077065115-lubjvat9919cm5lr1d2vbvha1kuude0s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kifayti.store",
+            "certificate_hash": "a564ee2cf4be21df1a2a079c4af0622477f046d1"
+          }
+        },
+        {
+          "client_id": "614077065115-m2o1igbsvhmuc4upp2his52g2bmisg43.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kifayti.store",
+            "certificate_hash": "a7b559d2bbfdb126d7fd24f984d1f998981a0c04"
+          }
+        },
+        {
+          "client_id": "614077065115-sk85ijfpci7jd22escv0pjkqerk2r3ln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnlJ6PHCvKMauIdQ4TWUWu_zACrYhY6ig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614077065115-sk85ijfpci7jd22escv0pjkqerk2r3ln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614077065115:android:454ba20fcbc3f97340633e",
+        "android_client_info": {
+          "package_name": "com.kifaytidelivery.store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614077065115-sk85ijfpci7jd22escv0pjkqerk2r3ln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnlJ6PHCvKMauIdQ4TWUWu_zACrYhY6ig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614077065115-sk85ijfpci7jd22escv0pjkqerk2r3ln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614077065115:android:b5a5ff0479888e9940633e",
+        "android_client_info": {
+          "package_name": "com.kifaytivendor.store"
         }
       },
       "oauth_client": [

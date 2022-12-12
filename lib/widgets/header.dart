@@ -560,7 +560,7 @@ class _HeaderState extends State<Header> with Navigations {
                             child: VxBuilder(
                               mutations: {HomeScreenController},
                               builder: (ctx,store,VxStatus? state){
-                                final snapshot = store!.homescreen.data!.featuredByCart;
+                                final snapshot = (VxState.store as GroceStore).homescreen.data!.featuredByCart;
                                 //stream: bloc.featureditems,
 
                                 if (snapshot!=null) {

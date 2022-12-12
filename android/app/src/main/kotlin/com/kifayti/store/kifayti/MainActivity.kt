@@ -1,4 +1,4 @@
-package com.kifayti.store.kifayti
+package com.kifayti.kifayti
 
 import io.flutter.embedding.android.FlutterActivity
 

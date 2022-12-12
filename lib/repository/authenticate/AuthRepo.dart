@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 //web
-import 'package:flutter_facebook_login_web/flutter_facebook_login_web.dart';
+//import 'package:flutter_facebook_login_web/flutter_facebook_login_web.dart';
 //app
-//import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../controller/mutations/cart_mutation.dart';
 import '../../models/VxModels/VxStore.dart';
@@ -31,43 +31,43 @@ class Auth {
 
   Future<AuthData> facebookLogin(returns) async {
     //web
-    final facebookSignIn = FacebookLoginWeb();
-    final result = await facebookSignIn.logIn(['email']);
+    // final facebookSignIn = FacebookLoginWeb();
+    // final result = await facebookSignIn.logIn(['email']);
 //app
-//      final _facebookLogin = FacebookLogin();
-//
-//     _facebookLogin.loginBehavior =
-//     Platform.isIOS ? FacebookLoginBehavior.webViewOnly : FacebookLoginBehavior
-//         .nativeWithFallback;
-    //   final result = await _facebookLogin.logIn(['email']);
+    final _facebookLogin = FacebookLogin();
+
+    _facebookLogin.loginBehavior =
+    Platform.isIOS ? FacebookLoginBehavior.webViewOnly : FacebookLoginBehavior
+        .nativeWithFallback;
+    final result = await _facebookLogin.logIn(['email']);
     switch (result.status) {
       case FacebookLoginStatus.loggedIn:
       //APP
-      //     final response = await http.get(
-      //         'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,picture,email&access_token=${result
-      //             .accessToken.token}');
-      //
-      //     Map<String, dynamic> map = json.decode(response.body);
-      //
-      //     _isnewUser(map["email"]).then((value) {
-      //       _authresponse = returns(AuthData(code: response.statusCode,
-      //           messege: "Login Success",
-      //           status: true,
-      //           data: SocialAuthUser.fromJson(SocialAuthUser.fromJson(map).toJson(newuser: value.type=="old"?false:true,id: value.apikey))));
-      //     });
+        final response = await http.get(
+            'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,picture,email&access_token=${result
+                .accessToken.token}');
 
-      // web
+        Map<String, dynamic> map = json.decode(response.body);
 
-        final token = result.accessToken.token;
-        final graphResponse = await http.get(
-            'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,picture,email&access_token=${token}');
-        Map<String, dynamic> map = json.decode(graphResponse.body);
         _isnewUser(map["email"]).then((value) {
-          _authresponse = returns(AuthData(code: graphResponse.statusCode,
+          _authresponse = returns(AuthData(code: response.statusCode,
               messege: "Login Success",
               status: true,
               data: SocialAuthUser.fromJson(SocialAuthUser.fromJson(map).toJson(newuser: value.type=="old"?false:true,id: value.apikey))));
         });
+
+        // web
+
+        // final token = result.accessToken.token;
+        // final graphResponse = await http.get(
+        //     'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,picture,email&access_token=${token}');
+        // Map<String, dynamic> map = json.decode(graphResponse.body);
+        // _isnewUser(map["email"]).then((value) {
+        //   _authresponse = returns(AuthData(code: graphResponse.statusCode,
+        //       messege: "Login Success",
+        //       status: true,
+        //       data: SocialAuthUser.fromJson(SocialAuthUser.fromJson(map).toJson(newuser: value.type=="old"?false:true,id: value.apikey))));
+        // });
         // TODO: Handle this case.
         break;
       case FacebookLoginStatus.cancelledByUser:
@@ -119,6 +119,7 @@ class Auth {
         await api.Posturl("customer/pre-register"));
     print("sdfgbnm...."+response["type"].toString()+"oypppp.."+response["data"]["otp"].toString());
     PrefUtils.prefs!.setString("typenew",  response["type"].toString());
+    PrefUtils.prefs!.setString("typenewpromo",  response["type"].toString());
     if (response["type"] == "new") {
       PrefUtils.prefs!.remove("userapikey");
       PrefUtils.prefs!.setString("Otp", response["data"]["otp"].toString());

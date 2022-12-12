@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.kifayti.store">
+    package="com.kifayti">
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -12,7 +12,8 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"
+        tools:node="remove"/>
 
 
     <!--
@@ -93,6 +94,7 @@
         <!--This line is for integrating facebook api-->
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
@@ -112,7 +114,7 @@
 
         <!--<provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.kifayti.store.provider"
+            android:authorities="com.kifayti.provider"
             android:exported="false"
             tools:replace="android:authorities"
             android:grantUriPermissions="true">

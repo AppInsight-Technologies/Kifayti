@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_notification_channel_id">com.kifayti.store.default</string>
+    <string name="default_notification_channel_id">com.kifayti.default</string>
     <string name="app_name">Kifayti</string>
     <string name="facebook_app_id">1100365537123865</string>
+    <string name="facebook_client_token">69ab540606ad7effb7e99d12470fa08e</string>
     <string name="fb_login_protocol_scheme">fb1100365537123865</string>
-    <string name="freshchat_file_provider_authority">com.kifayti.store.provider</string>
+    <string name="freshchat_file_provider_authority">com.kifayti.provider</string>
 </resources>

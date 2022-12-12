@@ -1359,6 +1359,7 @@ class BrandItemsList with ChangeNotifier {
             //  "branch": prefs.getString('branch'),
           }
       );
+      print("Referand earn....."+url.toString());
       final responseJson = json.decode(utf8.decode(response.bodyBytes));
       if (responseJson.toString() != "[]") {
         List data = [];

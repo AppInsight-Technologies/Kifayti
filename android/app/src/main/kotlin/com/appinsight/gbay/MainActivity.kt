@@ -1,4 +1,4 @@
-package com.kifayti.store
+package com.kifayti
 
 /*import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
